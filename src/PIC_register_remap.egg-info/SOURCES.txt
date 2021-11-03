@@ -1,0 +1,6 @@
+setup.py
+src/PIC_register_remap.egg-info/PKG-INFO
+src/PIC_register_remap.egg-info/SOURCES.txt
+src/PIC_register_remap.egg-info/dependency_links.txt
+src/PIC_register_remap.egg-info/requires.txt
+src/PIC_register_remap.egg-info/top_level.txt
