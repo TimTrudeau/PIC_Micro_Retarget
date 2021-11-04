@@ -1,6 +1,21 @@
 import os, sys
 from parse_target import ClassTarget
 
+
+def readfile(self, filename):
+    content = None
+    try:
+        if not os.path.exists(filename):
+            print(f'File {filename} does not exist.')
+        else:
+            with open(filename, mode='r') as f:
+                content = f.read().splitlines()
+    except Exception as ex:
+        print(f'File {filename} failed to open.')
+        raise ex
+    return content
+
+
 class Remapper:
     def __init__(self, file688=None, targetfile=None):
         self.file688 = file688
@@ -9,28 +24,12 @@ class Remapper:
     def doRemapping(self):
         self.f688 = Class688()
         self.ftarget = ClassTarget()
-        self.f688data = self.readfile(self.file688)
-        self.targetdata = self.readfile(self.targetfile)
+        self.f688data = readfile(self.file688)
+        self.targetdata = readfile(self.targetfile)
         self.f688dict = self.f688.parse(self.f688data)
         self.targetdict = self.ftarget.parse(self.f688data)
         output = "this is a dummy output"
         return output
-
-    def readfile(self, filename):
-        content = None
-        try:
-            if not os.path.exists(filename):
-                print(f'File {filename} does not exist.')
-            else:
-                # Open the file as f.
-                # The function readlines() reads the file.
-                with open(filename, mode='r') as f:
-                    content = f.read().splitlines()
-        except Exception as ex:
-            print(f'File {filename} failed to open.')
-            raise ex
-        return content
-
 
 
 class Class688:
